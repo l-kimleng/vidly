@@ -4,6 +4,8 @@ const Joi = require("joi");
 const app = express();
 
 app.use(express.json());
+app.set('views', './views');
+app.set('view engine', 'pug');
 
 let genres = [
     {id: 1, name: 'Action'},
@@ -12,6 +14,10 @@ let genres = [
     {id: 4, name: 'Crime'},
     {id: 5, name: 'Drama'}
 ];
+
+app.get('/', (req, res) => {
+    res.render('home', {title: 'Vidly App', message: 'Welcome to advanced nodejs course.'})
+});
 
 app.get('/api/genres/', (req, res) => {
     res.send(genres);
