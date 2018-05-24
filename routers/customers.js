@@ -1,23 +1,11 @@
 
 const express = require('express');
 const mongoose = require('mongoose');
-const Joi = require('joi');
+const {Customer, validate } = require('../models/customer');
 const router = express.Router();
 
-const customerSchema = new mongoose.Schema({
-    name: {
-        type: String,
-        required: true,
-        minlength: 5
-    },
-    isGold: Boolean,
-    phone: String
-});
-
-const Customer = mongoose.model('Customer', customerSchema);
-
 router.post('/', async (req, res) => {
-    const {error} = validateCustomer(req.body);
+    const {error} = validate(req.body);
     if(error) return res.status(400).send(error.details[0].message);
 
     try{
@@ -40,17 +28,6 @@ async function createCustomer(customer) {
     }catch(err) {
         throw err;
     }
-}
-
-
-function validateCustomer(customer) {
-    const schema = {
-        name: Joi.string().required().min(5),
-        isGold: Joi.bool(),
-        phone: Joi.string()        
-    };
-
-    return Joi.validate(customer, schema);
 }
 
 module.exports = router;
