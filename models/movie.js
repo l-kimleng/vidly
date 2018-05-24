@@ -20,7 +20,7 @@ function validate(movie) {
         title: Joi.string().required(),
         numberInStock: Joi.number().default(0).min(0),
         dailyRentalRate: Joi.number().default(0).min(0),
-        genre: Joi.object().optional()
+        genreId: Joi.objectId().required()
     };
     return Joi.validate(movie, schema);
 }
