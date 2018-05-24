@@ -4,10 +4,6 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost/movies')
-    .then(() => console.log("Connect to mongodb."))
-    .catch((err) => console.log("Something went worong", err));
-
 const genreSchema = new mongoose.Schema({
     name: {
         type: String,
