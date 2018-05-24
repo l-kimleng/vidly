@@ -25,7 +25,7 @@ async function getGenres() {
         return await Genre.find()
                    .select({name: 1}); 
     }catch(err) {
-        console.log(err);
+        throw err;
     }       
 }
 
@@ -45,7 +45,7 @@ async function getGenre(id) {
         return await Genre.findById(id)
                         .select({name: 1});
     }catch(err) {
-        console.log(err);
+        throw err;
     }
 }
 
@@ -64,7 +64,7 @@ async function createGenre(name) {
         let genre = new Genre({name: name});
         return await genre.save();
     }catch(err) {
-        console.log(err);
+        throw err;
     }    
 }
 
@@ -87,7 +87,7 @@ async function updateGenre(id, name) {
             name: name
         }, {new: true});     
     }catch(err) {
-        console.log(err);
+        throw err;
     }
 }
 
@@ -106,7 +106,7 @@ async function deleteGenre(id) {
     try{
         return await Genre.findByIdAndRemove(id);
     }catch(err) {
-        console.log(err);
+        throw err;
     }
 }
 
