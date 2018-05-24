@@ -4,6 +4,7 @@ const app = express();
 const home = require('./routers/home');
 const genres = require('./routers/genres');
 const customers = require('./routers/customers');
+const movies = require('./routers/movies');
 const mongoose = require('mongoose');
 
 mongoose.connect('mongodb://localhost/vidly')
@@ -13,6 +14,7 @@ mongoose.connect('mongodb://localhost/vidly')
 app.use(express.json());
 app.use('/api/genres/', genres);
 app.use('/api/customers/', customers);
+app.use('/api/movies/', movies);
 app.use('/', home);
 
 app.set('views', './views');
