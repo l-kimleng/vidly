@@ -3,14 +3,16 @@ const express = require("express");
 const app = express();
 const home = require('./routers/home');
 const genres = require('./routers/genres');
+const customers = require('./routers/customers');
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost/movies')
-    .then(() => console.log("Connect to mongodb."))
+mongoose.connect('mongodb://localhost/vidly')
+    .then(() => console.log("Connected to mongodb."))
     .catch((err) => console.log("Something went worong", err));
 
 app.use(express.json());
 app.use('/api/genres/', genres);
+app.use('/api/customers/', customers);
 app.use('/', home);
 
 app.set('views', './views');
